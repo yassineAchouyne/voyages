@@ -33,3 +33,19 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/Resultat', function () {
+    return Inertia::render('resultat');  
+});
+
+Route::get('/confirm', function () {
+    return Inertia::render('Confirmer');  
+});
+
+Route::get('/paiment', function () {
+    return Inertia::render('paiment');  
+});
+
+
+
+
