@@ -9,6 +9,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
+import NavBar from '@/Components/NavBar/NavBar';
 
 export default function Register() {
   const page = useTypedPage();
@@ -29,6 +30,8 @@ export default function Register() {
   }
 
   return (
+    <>
+    <NavBar bg="true"/>
     <AuthenticationCard>
       <Head title="Register" />
 
@@ -149,5 +152,6 @@ export default function Register() {
         </div>
       </form>
     </AuthenticationCard>
+    </>
   );
 }
