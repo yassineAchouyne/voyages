@@ -29,22 +29,17 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
-        // $credentials = $request->only('email', 'password');
-// return JWTAuth::attempt($credentials)
-        try {
-            if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return response()->json(compact('token'));
+        return $this->respondWithToken($token);
     }
 
     public function register()
     {
-        $credentials = request(['name','email', 'password']);
+        $credentials = request(['nom','prenom','tel','email','password']);
         $credentials['password'] = bcrypt($credentials['password']);
         User::create($credentials);
 

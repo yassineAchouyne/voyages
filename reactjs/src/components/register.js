@@ -1,48 +1,73 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import AuthUser from './AuthUser';
+import styles from './Login/Login.module.css'
 
 export default function Register() {
     const navigate = useNavigate();
     const {http,setToken} = AuthUser();
-    const [name,setName] = useState();
+    const [nom,setNom] = useState();
+    const [prenom,setPrenom] = useState();
+    const [tel,setTel] = useState();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
 
     const submitForm = () =>{
         // api call
-        http.post('/register',{email:email,password:password,name:name}).then((res)=>{
-            navigate('/login')
+        http.post('/register',{nom,prenom,tel,email,password}).then((res)=>{
+            // navigate('/login')
+            alert(res.data)
         })
     }
 
     return(
-        <div className="row justify-content-left pt-5">
-            <div className="col-sm-6">
-                <div className="card p-4">
-                    <h1 className="text-center mb-3">Register </h1>
-                    <div className="form-group">
-                        <label>Name:</label>
-                        <input type="test" className="form-control" placeholder="Enter name"
-                            onChange={e=>setName(e.target.value)}
-                        id="email" />
-                    </div>
-                    <div className="form-group mt-3">
-                        <label>Email address:</label>
-                        <input type="email" className="form-control" placeholder="Enter email"
-                            onChange={e=>setEmail(e.target.value)}
-                        id="email" />
-                    </div>
-
-                    <div className="form-group mt-3">
-                        <label>Password:</label>
-                        <input type="password" className="form-control" placeholder="Enter password"
-                            onChange={e => setPassword(e.target.value)}
-                        id="pwd" />
-                    </div>
-                    <button type="button" onClick={submitForm} className="btn btn-primary mt-4">Register</button>
-                </div>
-            </div>
-        </div>
+        <form className={styles.body} >
+            <label className="w-100">
+              Nom :
+              <input
+                type={"text"}
+                className="form-control mt-2"
+                placeholder="Saisissez votre Nom"
+                onChange={e=>setNom(e.target.value)}
+              />
+            </label>
+            <label className="w-100">
+              Prénom :
+              <input
+                type={"text"}
+                className="form-control mt-2"
+                placeholder="Saisissez votre Prénom"
+                onChange={e=>setPrenom(e.target.value)}
+              />
+            </label>
+            <label className="w-100">
+              Téléphone :
+              <input
+                type={"text"}
+                className="form-control mt-2"
+                placeholder="+212 000000000"
+                onChange={e=>setTel(e.target.value)}
+              />
+            </label>
+            <label className="w-100">
+              Email :
+              <input
+                type={"text"}
+                className="form-control mt-2"
+                placeholder="Saisissez votre Email"
+                onChange={e=>setEmail(e.target.value)}
+              />
+            </label>
+            <label className="w-100">
+              Mot de passe :
+              <input
+                type={"text"}
+                className="form-control mt-2"
+                placeholder="********"
+                onChange={e=>setPassword(e.target.value)}
+              />
+            </label>
+            <button type="button" className="btn btn-primary w-100" onClick={submitForm}>S'INSCRIRE</button>
+          </form>
     )
 }
