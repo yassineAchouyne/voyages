@@ -3,8 +3,8 @@ font-family: 'Arvo', serif;
 font-family: 'Mochiy Pop One', sans-serif;
 font-family: 'Oswald', sans-serif;
  */
- .menu{
-    background-color: #1d2022; 
+.menu {
+    background-color: #1d2022;
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -15,31 +15,38 @@ font-family: 'Oswald', sans-serif;
     top: 0;
     z-index: 0;
 }
-.menu img{
-    width:5rem;
+
+.menu img {
+    width: 5rem;
     height: 5rem;
 }
-.menu > nav{
+
+.menu>nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-     width: 100%;
+    width: 100%;
 }
-.menu >nav .img{
+
+.menu>nav .img {
     width: 3rem;
     height: 2rem;
 }
-h3{
+
+h3 {
     color: white;
 }
-.titre{
+
+.titre {
     color: #1671D0;
     text-align: center;
-    
+
 }
-.lesArticle{
+
+.lesArticle {
     min-height: 250px;
 }
+
 .lesArticle article {
     border: 1px solid #707070;
     margin: 0 40px;
@@ -48,56 +55,66 @@ h3{
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-   
+
 }
-.lesArticle .tmp{
+
+.lesArticle .tmp {
     width: 10rem;
     height: 5.5rem;
     border: 1px solid #707070;
     border-radius: 15px;
 }
-.lesArticle article>div{
+
+.lesArticle article>div {
     display: flex;
     align-items: center;
 }
+
 .lesArticle .time {
     font-size: 30px;
     color: #1671D0;
     margin: 0 10px;
 }
-.lesArticle article dir span{
+
+.lesArticle article dir span {
     border: 1px solid #707070;
     padding: 0 15px;
     border-radius: 15px;
     height: 25px;
-    color:#707070;
+    color: #707070;
     font-size: small;
 }
-dir{
+
+dir {
     height: 100%;
 }
-.lesArticle label{
+
+.lesArticle label {
     color: #1671D0;
     font-size: 25px;
 }
-.lesArticle label select{
+
+.lesArticle label select {
     color: #4A739A;
     border: 0;
     font-size: 20px;
 }
-.lesArticle .info{
+
+.lesArticle .info {
     width: 50px;
-    margin:  0 15px;
+    margin: 0 15px;
 
 }
-.lesArticle article>div>div>p{
+
+.lesArticle article>div>div>p {
     color: #707070;
 }
-.lesArticle article>div>div>p>span{
+
+.lesArticle article>div>div>p>span {
     color: #1671D0;
 }
 
-.lesArticle button{
+.lesArticle button {
     padding: 9px;
     color: white;
     background-color: #4A739A;
@@ -106,10 +123,15 @@ dir{
     width: 100%;
     transition: all 0.5s;
 }
-.lesArticle button:hover{
+
+.lesArticle button:hover {
     color: #4A739A;
     background-color: transparent;
 }
-.aucun{
 
+.aucun {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
