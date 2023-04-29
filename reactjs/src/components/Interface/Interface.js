@@ -1,20 +1,26 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Interface.module.css";
 import AuthUser from "../AuthUser";
+import { useEffect } from "react";
 export default function Interface() {
   const navigate = useNavigate();
-  const{http} = AuthUser();
-  const[lieuDebart,setLieuDebart] = useState();
-  const[lieuArrive,setLieuArrive] = useState();
-  const[date,setDate] = useState();
-    
-   const recherch = () =>{
-    http.post('resultat',{lieuDebart,lieuArrive,date}).then(res=>
-      // alert(res.data)
-      navigate('resultat',{state:res.data})
-      )
-   }
+  const today = new Date().toISOString().substr(0, 10);
+  const { http } = AuthUser();
+  const [lieuDebart, setLieuDebart] = useState();
+  const [lieuArrive, setLieuArrive] = useState();
+  const [date, setDate] = useState(today);
+  const [villes, setVilles] = useState([]);
+
+  http.get("ville").then((res) => setVilles(res.data));
+
+  const recherch = () => {
+    http
+      .post("resultat", { lieuDebart, lieuArrive, date })
+      .then((res) =>
+        navigate("resultat", { state: { resultat: res.data, villes: villes , date:date } })
+      );
+  };
 
   return (
     <section className={styles.interface}>
@@ -23,32 +29,51 @@ export default function Interface() {
           Achetez vos tickets d'autocar au meilleur prix!
         </h1>
         <form>
-          <select onChange={(e)=>setLieuDebart(e.target.value)}>
-            <option selected disabled>------Vill du départ------</option>
-            <option value="1">SAFI</option>
+          <select onChange={(e) => setLieuDebart(e.target.value)}>
+            <option selected disabled>
+              ------Vill du départ------
+            </option>
+            {villes.map((ville) => (
+              <option value={ville.id}>{ville.nom}</option>
+            ))}
           </select>
 
-          <select onChange={(e)=>setLieuArrive(e.target.value)}>
-            <option>------Vill d'arriveé------</option>
-            <option value="1">SAFI</option>
-            <option value="2">RABAT</option>
+          <select onChange={(e) => setLieuArrive(e.target.value)}>
+            <option selected disabled>
+              ------Vill d'arriveé------
+            </option>
+            {villes.map((ville) => (
+              <option value={ville.id}>{ville.nom}</option>
+            ))}
           </select>
 
-
-          <input type="date" onChange={(e)=>setDate(e.target.value)}/>
+          <input
+            type="date"
+            defaultValue={today}
+            min={today}
+            onChange={(e) => setDate(e.target.value)}
+          />
 
           {/* <Link to={'/resultat'} > */}
-            <button type="button"  style={{color:"#fff"}} onClick={recherch}  className={styles.recherch}>RECHERCHER</button>
-            {/* </Link> */}
-          
+          <button
+            type="button"
+            style={{ color: "#fff" }}
+            onClick={recherch}
+            className={styles.recherch}
+          >
+            RECHERCHER
+          </button>
+          {/* </Link> */}
         </form>
-        <h3 className={styles.soustitre}>Destinations les plus recherchées :</h3>
+        <h3 className={styles.soustitre}>
+          Destinations les plus recherchées :
+        </h3>
         <div className={styles.plusRecherch}>
-            <a href="">ASFI→AGADIR</a>
-            <a href="">ASFI→CASABLANCA</a>
-            <a href="">ASFI→RABAT</a>
-            <a href="">ASFI→TANGER</a>
-            <a href="">ASFI→FES</a>
+          <a href="">ASFI→AGADIR</a>
+          <a href="">ASFI→CASABLANCA</a>
+          <a href="">ASFI→RABAT</a>
+          <a href="">ASFI→TANGER</a>
+          <a href="">ASFI→FES</a>
         </div>
       </div>
     </section>

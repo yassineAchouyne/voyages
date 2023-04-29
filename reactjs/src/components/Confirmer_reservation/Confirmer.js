@@ -1,14 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
 import styles from "./Confiremer.module.css";
 import Footer from "../Footer/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/fr";
+
 export default function Confirmer() {
   const { state } = useLocation();
   const navigate = useNavigate()
-  
-  let debut = new Date("0001-01-01 "+state.dateDebart);
-  let fin = new Date("0001-01-01 "+state.dateArrive);
+
+
+  const dateString = state.date;
+  const date = moment(dateString).locale("fr");
+  const formattedDate = date.format("dddd D MMMM YYYY");
+
+
+  let debut = new Date("0001-01-01 "+state.res.dateDebart);
+  let fin = new Date("0001-01-01 "+state.res.dateArrive);
   let duree = (fin - debut )/ (1000 * 60);
+  
+
+ 
 
   return (
     <>
@@ -16,9 +28,9 @@ export default function Confirmer() {
         <nav>
           <img src="./img/pngwing.com.png" onClick={()=>navigate("/")}/>
           <h3>
-            Votre voyage de <span>Safi</span> à <span>Casablanca</span>
+            Votre voyage de <span>{state.villeD.nom}</span> à <span>{state.villeA.nom}</span>
           </h3>
-          <h3>Lundi 9 Janvier 2023</h3>
+          <h3>{formattedDate}</h3>
         </nav>
       </header>
       <br />
@@ -32,7 +44,7 @@ export default function Confirmer() {
             <h3>Détails du prix</h3>
             <div>
               <p>Prix unitaire </p>
-              <span>{state.prix}DH</span>
+              <span>{state.res.prix}DH</span>
             </div>
             <div>
               <p>Frais de service </p>
@@ -40,7 +52,7 @@ export default function Confirmer() {
             </div>
             <div>
               <h4>Prix Total</h4>
-              <span className={styles.prix}>{state.prix + 5}DH</span>
+              <span className={styles.prix}>{state.res.prix + 5}DH</span>
             </div>
           </article>
           <article>
@@ -55,15 +67,15 @@ export default function Confirmer() {
         </aside>
         <section>
           <article className={styles.article}>
-            <img className={styles.tmp} src={state.image} />
+            <img className={styles.tmp} src={state.res.image} />
             <div>
-              <span className={styles.span}>{state.statut}</span>
+              <span className={styles.span}>{state.res.statut}</span>
               <h1>
-                {state.dateDebart.substring(0, 5)}
+                {state.res.dateDebart.substring(0, 5)}
                 <div className={styles.line}></div>
                 <span>{duree} min</span>
                 <div className={styles.line}></div>
-                {state.dateArrive.substring(0, 5)}
+                {state.res.dateArrive.substring(0, 5)}
               </h1>
               <p>lundi 9 janvier 2023</p>
             </div>

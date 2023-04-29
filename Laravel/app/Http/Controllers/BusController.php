@@ -91,13 +91,24 @@ class BusController extends Controller
      */
     public function resultat(Request $request)
     {
-        $res = DB::table('buses')->where([
-            'lieuDebart' => $request->lieuDebart,
-            'lieuArrive' => $request->lieuArrive,
-        ])->where('dateDebart', '>', date("H:i:s"))
-            ->orderBy('dateDebart', 'asc')
-            ->orderBy('dateArrive', 'asc')
-            ->get();
+        if ($request->date == date("Y-m-d")) {
+            $res = DB::table('buses')->where([
+                'lieuDebart' => $request->lieuDebart,
+                'lieuArrive' => $request->lieuArrive,
+            ])->where('dateDebart', '>', date("H:i:s"))
+                ->orderBy('dateDebart', 'asc')
+                ->orderBy('dateArrive', 'asc')
+                ->get();
+        }else{
+            $res = DB::table('buses')->where([
+                'lieuDebart' => $request->lieuDebart,
+                'lieuArrive' => $request->lieuArrive,
+            ])
+                ->orderBy('dateDebart', 'asc')
+                ->orderBy('dateArrive', 'asc')
+                ->get();
+        }
+
         return response()->json($res);
     }
 }

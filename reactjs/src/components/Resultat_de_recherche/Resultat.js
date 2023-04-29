@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Resultat.module.css";
 import Footer from "../Footer/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 export default function Resultat() {
   const navigate = useNavigate();
   const { state } = useLocation();
-
-  const reserver = (res) => {
-    navigate("/confirm", { state: res });
-  };
+if(state.resultat.length==0){
   return (
     <>
       <header className={styles.menu} style={{ backgroundColor: "#4A739A" }}>
         <nav>
-          <img src="./img/pngwing.com.png" onClick={()=>navigate("/")}/>
+          <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
           <h3 href="" className={styles.connecter}>
             les voyage disponible
           </h3>
@@ -27,10 +24,47 @@ export default function Resultat() {
       <br />
       <br />
       <section>
-        <h1 className={styles.titre}>SAFI → CASABLANCA </h1>
 
         <div className={styles.lesArticle}>
-          {state.map((res) => (
+         <div className={styles.aucun}>
+            <h1>Aucun résultat de recherche</h1>
+         </div>
+        </div>
+      </section>
+      <Footer />
+    </>
+  )
+}
+
+   const villeD = state.villes.find((u) => u.id === state.resultat[0].lieuDebart);
+  const villeA = state.villes.find((u) => u.id === state.resultat[0].lieuArrive);
+
+
+  const reserver = (res) => {
+    navigate("/confirm", { state: {res:res,villeD:villeD,villeA:villeA,date:state.date}});
+  };
+  return (
+    <>
+      <header className={styles.menu} style={{ backgroundColor: "#4A739A" }}>
+        <nav>
+          <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
+          <h3 href="" className={styles.connecter}>
+            les voyage disponible
+          </h3>
+          <a>
+            <img className={styles.img} src="./img/icons8-filter-64.png" />
+          </a>
+        </nav>
+      </header>
+      <br />
+      <br />
+      <br />
+      <br />
+      <section>
+        <h1 className={styles.titre}> {villeD.nom} → {villeA.nom} </h1>
+
+        <div className={styles.lesArticle}>
+          {state.resultat.map((res) => (
             <article key={res.id}>
               <div>
                 <img className={styles.tmp} src={res.image} />

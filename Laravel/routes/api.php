@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::group(['middleware'=>'api'],function(){
 });
 
 Route::post('resultat',[BusController::class,'resultat']);
+
+Route::get('ville',[Controller::class,'lesVilles']);
