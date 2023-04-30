@@ -17,20 +17,23 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
 
 Route::group(['middleware'=>'api'],function(){
+    // client
     Route::post('logout', [AuthController::class,'logout']);
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
+
+    // admin
+    Route::resource('buses',BusController::class);
 });
 
 Route::post('resultat',[BusController::class,'resultat']);
-
 Route::get('ville',[Controller::class,'lesVilles']);

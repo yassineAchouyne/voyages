@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import styles from "./Interface.module.css";
 import AuthUser from "../AuthUser";
-import { useEffect } from "react";
 export default function Interface() {
   const navigate = useNavigate();
   const today = new Date().toISOString().substr(0, 10);
   const { http } = AuthUser();
-  const [lieuDebart, setLieuDebart] = useState();
-  const [lieuArrive, setLieuArrive] = useState();
+  const [lieuDebart, setLieuDebart] = useState(0);
+  const [lieuArrive, setLieuArrive] = useState(0);
   const [date, setDate] = useState(today);
   const [villes, setVilles] = useState([]);
 

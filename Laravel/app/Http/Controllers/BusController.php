@@ -15,6 +15,8 @@ class BusController extends Controller
      */
     public function index()
     {
+        $buses = Bus::all();
+        return response()->json($buses);
     }
 
     /**
