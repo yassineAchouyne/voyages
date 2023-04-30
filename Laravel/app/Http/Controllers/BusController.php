@@ -37,7 +37,19 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bus = new Bus();
+        // // $bus->libelle = $request->libelle;
+        $bus->capacite = $request->capacite;
+        $bus->dateArrive = $request->dateArrive;
+        $bus->dateDebart = $request->dateDebart;
+        $bus->lieuArrive = $request->lieuArrive;
+        $bus->lieuDebart = $request->lieuDebart;
+        $bus->prix = $request->prix;
+        $bus->statut = $request->statut;
+        $bus->save();
+        
+        $buses = Bus::all();
+        return response()->json($buses);
     }
 
     /**
@@ -71,7 +83,18 @@ class BusController extends Controller
      */
     public function update(Request $request, Bus $bus)
     {
-        //
+        // // $bus->libelle = $request->libelle;
+        $bus->capacite = $request->capacite;
+        $bus->dateArrive = $request->dateArrive;
+        $bus->dateDebart = $request->dateDebart;
+        $bus->lieuArrive = $request->lieuArrive;
+        $bus->lieuDebart = $request->lieuDebart;
+        $bus->prix = $request->prix;
+        $bus->statut = $request->statut;
+        $bus->update();
+        
+        $buses = Bus::all();
+        return response()->json($buses);
     }
 
     /**
@@ -82,7 +105,10 @@ class BusController extends Controller
      */
     public function destroy(Bus $bus)
     {
-        //
+        $bus->delete();
+        
+        $buses = Bus::all();
+        return response()->json($buses);
     }
 
     /**

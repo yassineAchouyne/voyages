@@ -28,13 +28,13 @@ export default function AuthUser(){
 
         setToken(token);
         setUser(user);
-        navigate('/dashboard');
+        navigate('/');
     }
 
 
     const logout = () => {
         sessionStorage.clear();
-        navigate('/login');
+        navigate('/');
     }
 
     const http = axios.create({

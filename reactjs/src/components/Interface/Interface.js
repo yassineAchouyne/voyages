@@ -37,7 +37,7 @@ export default function Interface() {
             ))}
           </select>
 
-          <select onChange={(e) => setLieuArrive(e.target.value)}>
+          <select  onChange={(e) => setLieuArrive(e.target.value)}>
             <option selected disabled>
               ------Vill d'arriveé------
             </option>
