@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import styles from "./Resultat.module.css";
 import Footer from "../Footer/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthUser from "../AuthUser";
 export default function Resultat() {
   const navigate = useNavigate();
+  const {storage} = AuthUser()
   const { state } = useLocation();
 if(state.resultat.length==0){
   return (
@@ -67,7 +69,7 @@ if(state.resultat.length==0){
           {state.resultat.map((res) => (
             <article key={res.id}>
               <div>
-                <img className={styles.tmp} src={res.image} />
+                <img className={styles.tmp} src={storage+res.image} />
                 <p className={styles.time}>
                   {res.dateDebart.substring(0, 5)} →{" "}
                   {res.dateArrive.substring(0, 5)}

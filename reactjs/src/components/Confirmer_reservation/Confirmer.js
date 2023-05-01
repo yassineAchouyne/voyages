@@ -4,9 +4,11 @@ import Footer from "../Footer/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
+import AuthUser from "../AuthUser";
 
 export default function Confirmer() {
   const { state } = useLocation();
+  const {storage} = AuthUser()
   const navigate = useNavigate()
 
 
@@ -67,7 +69,7 @@ export default function Confirmer() {
         </aside>
         <section>
           <article className={styles.article}>
-            <img className={styles.tmp} src={state.res.image} />
+            <img className={styles.tmp} src={storage+state.res.image} />
             <div>
               <span className={styles.span}>{state.res.statut}</span>
               <h1>

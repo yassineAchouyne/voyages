@@ -97,10 +97,6 @@ class BusController extends Controller
         $bus->lieuDebart = $request->lieuDebart;
         $bus->prix = $request->prix;
         $bus->statut = $request->statut;
-        // if ($request->hasFile('photo')) {
-        //     $path = $request->file('photo')->storePublicly('photos','public');
-        //     $bus->image = $path ;
-        // }
         $bus->save();
         
         $buses = Bus::all();

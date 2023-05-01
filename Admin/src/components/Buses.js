@@ -71,8 +71,12 @@ export default function Buses() {
   };
 
   const getVille = (id) => {
-    // return villes.find((u) => u.id === id).nom
+    let ville = villes.find((u) => u.id === id)
+    if (ville) return ville.nom
+
+
   };
+
   return (
     <>
       <div class="card border-0 shadow">
@@ -229,7 +233,6 @@ export default function Buses() {
               </thead>
               <tbody>
                 {buses.map((bus) => (
-                  <>
                     <tr key={bus.id}>
                       <td class="border-0">
                         <a class="d-flex align-items-center">
@@ -285,7 +288,6 @@ export default function Buses() {
                         </button>
                       </td>
                     </tr>
-                  </>
                 ))}
               </tbody>
             </table>
