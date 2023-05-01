@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 export default function Buses() {
-  const { http } = AuthUser();
+  const { http,storage } = AuthUser();
   const [buses, setBuses] = useState([]);
   const [show, setShow] = useState(false);
   const [update, setUpdate] = useState(false);
@@ -30,36 +30,32 @@ export default function Buses() {
     http.get("ville").then((res) => setVilles(res.data));
   }, []);
   const Ajouter = () => {
+    const formData = new FormData();
+    formData.append("photo", photo);
+    formData.append("libelle", libelle);
+    formData.append("lieuDebart", lieuDebart);
+    formData.append("lieuArrive", lieuArrive);
+    formData.append("dateDebart", dateDebart);
+    formData.append("dateArrive", dateArrive);
+    formData.append("capacite", capacite);
+    formData.append("prix", prix);
+    formData.append("statut", statut);
     http
-      .post("buses", {
-        libelle,
-        lieuDebart,
-        lieuArrive,
-        dateDebart,
-        dateArrive,
-        capacite,
-        prix,
-        statut,
-        photo,
-      })
+      .post(
+        "buses",
+        formData
+      )
       .then((res) => {
         setBuses(res.data);
         setShow(false);
       });
+    // console.log(photo)
   };
 
   const Modifier = (id) => {
     http
       .put("buses/" + id, {
-        libelle,
-        lieuDebart,
-        lieuArrive,
-        dateDebart,
-        dateArrive,
-        capacite,
-        prix,
-        statut,
-        photo,
+        libelle,lieuDebart,lieuArrive,dateDebart,dateArrive,capacite,prix,statut,photo
       })
       .then((res) => {
         setBuses(res.data);
@@ -74,6 +70,9 @@ export default function Buses() {
     });
   };
 
+  const getVille = (id) => {
+    // return villes.find((u) => u.id === id).nom
+  };
   return (
     <>
       <div class="card border-0 shadow">
@@ -180,7 +179,7 @@ export default function Buses() {
                     <input
                       type={"file"}
                       className="form-control mt-2"
-                      onChange={(e) => setPhoto(e.target.value)}
+                      onChange={(e) => setPhoto(e.target.files[0])}
                     />
                   </label>
                 </div>
@@ -233,23 +232,26 @@ export default function Buses() {
                   <>
                     <tr key={bus.id}>
                       <td class="border-0">
-                        <a href="#" class="d-flex align-items-center">
+                        <a class="d-flex align-items-center">
                           <img
-                            class="me-2 image image-small rounded-circle"
+                            class="me-2"
+                            width={"50"}
+                            height={"30"}
+                            style={{borderRadius:"5px"}}
                             alt="Image placeholder"
-                            src="assets/img/germany.svg"
+                            src={storage+bus.image}
                           />
                           <div>
-                            <span class="h6">Germany</span>
+                            <span class="h6">{bus.libelle}</span>
                           </div>
                         </a>
                       </td>
                       <td class="border-0 fw-bold">{bus.capacite}</td>
                       <td class="border-0 fw-bold">
-                        {bus.lieuDebart + " " + bus.dateDebart}
+                        {getVille(bus.lieuDebart) + " " + bus.dateDebart}
                       </td>
                       <td class="border-0 fw-bold">
-                        {bus.lieuArrive + " " + bus.dateArrive}
+                        {getVille(bus.lieuArrive) + " " + bus.dateArrive}
                       </td>
                       <td class="border-0 fw-bold">{bus.statut}</td>
                       <td class="border-0 fw-bold">{bus.prix} DH</td>
@@ -258,7 +260,7 @@ export default function Buses() {
                           className="btn text-primary fs-5"
                           onClick={() => {
                             setUpdate(true);
-                            setLibelle("");
+                            setLibelle(bus.libelle);
                             setLieuDebart(bus.lieuDebart);
                             setLieuArrive(bus.lieuArrive);
                             setDateDebart(bus.dateDebart);

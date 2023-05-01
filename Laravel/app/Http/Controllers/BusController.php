@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BusController extends Controller
 {
@@ -38,7 +39,7 @@ class BusController extends Controller
     public function store(Request $request)
     {
         $bus = new Bus();
-        // // $bus->libelle = $request->libelle;
+        $bus->libelle = $request->libelle;
         $bus->capacite = $request->capacite;
         $bus->dateArrive = $request->dateArrive;
         $bus->dateDebart = $request->dateDebart;
@@ -46,6 +47,11 @@ class BusController extends Controller
         $bus->lieuDebart = $request->lieuDebart;
         $bus->prix = $request->prix;
         $bus->statut = $request->statut;
+        // if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->storePublicly('photos','public');
+        // }
+        
+        $bus->image = $path;
         $bus->save();
         
         $buses = Bus::all();
@@ -83,7 +89,7 @@ class BusController extends Controller
      */
     public function update(Request $request, Bus $bus)
     {
-        // // $bus->libelle = $request->libelle;
+        $bus->libelle = $request->libelle;
         $bus->capacite = $request->capacite;
         $bus->dateArrive = $request->dateArrive;
         $bus->dateDebart = $request->dateDebart;
@@ -91,7 +97,11 @@ class BusController extends Controller
         $bus->lieuDebart = $request->lieuDebart;
         $bus->prix = $request->prix;
         $bus->statut = $request->statut;
-        $bus->update();
+        // if ($request->hasFile('photo')) {
+        //     $path = $request->file('photo')->storePublicly('photos','public');
+        //     $bus->image = $path ;
+        // }
+        $bus->save();
         
         $buses = Bus::all();
         return response()->json($buses);

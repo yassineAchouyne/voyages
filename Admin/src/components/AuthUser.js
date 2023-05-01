@@ -44,6 +44,8 @@ export default function AuthUser(){
             "Authorization" : `Bearer ${token}`
         }
     });
+
+    const storage = "http://127.0.0.1:8000/storage/";
     return {
         setToken:saveToken,
         token,
@@ -51,5 +53,6 @@ export default function AuthUser(){
         getToken,
         http,
         logout,
+        storage,
     }
 }
