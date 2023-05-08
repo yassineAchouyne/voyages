@@ -20,6 +20,14 @@ export default function Confirmer() {
   let debut = new Date("0001-01-01 "+state.res.dateDebart);
   let fin = new Date("0001-01-01 "+state.res.dateArrive);
   let duree = (fin - debut )/ (1000 * 60);
+  const  formatTime = (minutes) =>{
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const formattedHours = hours < 10 ? `0${hours}` : hours;
+    const formattedMinutes = remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes;
+    return `${formattedHours}:${formattedMinutes}`;
+  }
+  
   
 
  
@@ -75,7 +83,7 @@ export default function Confirmer() {
               <h1>
                 {state.res.dateDebart.substring(0, 5)}
                 <div className={styles.line}></div>
-                <span>{duree} min</span>
+                <span>{formatTime(duree)}</span>
                 <div className={styles.line}></div>
                 {state.res.dateArrive.substring(0, 5)}
               </h1>
