@@ -30,7 +30,7 @@ export default function AuthUser(){
         setUser(user);
         navigate('/');
     } 
-
+ 
     const logout = () => {
         sessionStorage.clear();
         navigate('/login');

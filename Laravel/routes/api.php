@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\OffreController;
 use App\Http\Controllers\Controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::group(['middleware'=>'api'],function(){
 
     // admin
     Route::resource('buses',BusController::class);
+    Route::resource('offres',OffreController::class);
 });
 
 Route::post('resultat',[BusController::class,'resultat']);

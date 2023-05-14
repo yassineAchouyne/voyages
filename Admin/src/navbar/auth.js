@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 
 import AuthUser from "../components/AuthUser";
 import Buses from "../components/Buses";
+import Offres from "../components/offres";
 function Auth() {
   const { token, logout } = AuthUser();
   const logoutUser = () => {
@@ -32,6 +33,7 @@ function Auth() {
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route path="/buses" element={<Buses />} />
+            <Route path="/offres" element={<Offres />} />
           </Routes>
         </main>
       </div>

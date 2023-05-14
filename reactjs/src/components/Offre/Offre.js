@@ -1,42 +1,34 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import styles from './Offre.module.css'
+import AuthUser from '../AuthUser';
 export default function Offre() {
-  return ( 
-    <section>
-        <div className={styles.titre}>
-            <h1 >Découvrez nos offres</h1>
-            <span></span>
-        </div>
-        <div className={styles.LesArticle}>
-          <article>
-            <img src='./img/1442191.jpg'/>
-            <p>
-            Profitez de -10% sur tous les Horaires et Tarifs CTM pour vos tickets Aller-Retour partout au Maroc.
-            </p>
-            <a href=''>
-            J'achète
-            </a>
-          </article>
-          <article>
-            <img src='./img/1442191.jpg'/>
-            <p>
-            Profitez de -10% sur tous les Horaires et Tarifs CTM pour vos tickets Aller-Retour partout au Maroc.
-            </p>
-            <a href=''>
-            J'achète
-            </a>
-          </article>
+  const { http, storage } = AuthUser();
+  const [offres, setOffres] = useState([]);
 
+  const handleCopyClick = (code) => {
+    navigator.clipboard.writeText(code);
+  }
+
+  useEffect(() => {
+    http.get("offres").then((res) => setOffres(res.data));
+  }, []);
+  return (
+    <section>
+      <div className={styles.titre}>
+        <h1>Découvrez nos offres</h1>
+        <span></span>
+      </div>
+      <div className={styles.LesArticle}>
+        {offres.map((offre) => (
           <article>
-            <img src='./img/1442191.jpg'/>
+            <img src={storage + offre.photo} />
             <p>
-            Profitez de -10% sur tous les Horaires et Tarifs CTM pour vos tickets Aller-Retour partout au Maroc.
+              {offre.description}
             </p>
-            <a href=''>
-            J'achète
-            </a>
+            <button onClick={()=>handleCopyClick(offre.codePromo)} >J'achète</button>
           </article>
-        </div>
+        ))}
+      </div>
     </section>
-  )
+  );
 }

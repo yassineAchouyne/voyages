@@ -3,16 +3,23 @@ import { Link } from "react-router-dom";
 function Header() {
   const [dashboard, setDashboard] = useState("");
   const [buses, setBuses] = useState("");
+  const [offres, setOffres] = useState("");
   const url = window.location.pathname;
 
   useEffect(() => {
     if (url == "/") {
       setDashboard("active");
       setBuses('')
+      setOffres()
     }else if(url == "/buses"){
         setDashboard("");
+        setOffres()
         setBuses('active')
-    }
+    }else if(url == "/offres"){
+      setDashboard("");
+      setBuses("");
+      setOffres('active')
+  }
   }, [url]);
 
   return (
@@ -132,6 +139,14 @@ function Header() {
                   <i class="bi bi-bus-front"></i>
                 </span>
                 <span class="sidebar-text">Les Buses</span>
+              </Link>
+            </li>
+            <li class={`nav-item ${offres}`}>
+              <Link class="nav-link" to={{ pathname: "/offres" }}>
+                <span class="sidebar-icon">
+                  <i class="bi bi-binoculars-fill"></i>
+                </span>
+                <span class="sidebar-text">Les Offres</span>
               </Link>
             </li>
             <li class="nav-item">

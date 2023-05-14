@@ -48,3 +48,10 @@ INSERT INTO `villes` (`id`, `nom`) VALUES
 (33, 'Taza'),
 (34, 'Tétouan'),
 (35, 'Tiznit');
+
+
+
+INSERT INTO `offres` (`id`, `photo`, `description`, `remise`, `codePromo`, `created_at`, `updated_at`) VALUES
+(2, 'offres/eHkgXMQ4lk299TCsHM9eQZ5uFiJ3ZZe4Nl88WmqR.jpg', 'Profitez de -10% sur tous les Horaires et Tarifs CTM pour vos tickets Aller-Retour partout au Maroc.', 10, '123123', '2023-05-14 13:37:52', '2023-05-14 13:37:52'),
+(3, 'offres/IZL4zxufFmFWAyTEaujTRLRsUayTG6j8FYPUXXzu.png', 'test test test test test test', 20, '321321', '2023-05-14 13:44:04', '2023-05-14 13:44:04'),
+(4, 'offres/2Xw3znuW50rKEMubX9JP8cvYAnFqTx9PCGgp7EKr.jpg', 'test', 1, '2', '2023-05-14 13:47:59', '2023-05-14 13:47:59');

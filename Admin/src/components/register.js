@@ -16,7 +16,6 @@ export default function Register() {
         // api call
         http.post('/register',{nom,prenom,tel,email,password}).then((res)=>{
             // navigate('/login')
-            console.log(res.data)
         })
     }
 

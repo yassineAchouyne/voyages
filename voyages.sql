@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 08 mai 2023 à 09:27
+-- Généré le : dim. 14 mai 2023 à 15:05
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.1.13
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `buses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `buses`
@@ -117,7 +117,16 @@ CREATE TABLE IF NOT EXISTS `offres` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `offres`
+--
+
+INSERT INTO `offres` (`id`, `photo`, `description`, `remise`, `codePromo`, `created_at`, `updated_at`) VALUES
+(2, 'offres/eHkgXMQ4lk299TCsHM9eQZ5uFiJ3ZZe4Nl88WmqR.jpg', 'Profitez de -10% sur tous les Horaires et Tarifs CTM pour vos tickets Aller-Retour partout au Maroc.', 10, '123123', '2023-05-14 13:37:52', '2023-05-14 13:37:52'),
+(3, 'offres/IZL4zxufFmFWAyTEaujTRLRsUayTG6j8FYPUXXzu.png', 'test test test test test test', 20, '321321', '2023-05-14 13:44:04', '2023-05-14 13:44:04'),
+(4, 'offres/2Xw3znuW50rKEMubX9JP8cvYAnFqTx9PCGgp7EKr.jpg', 'test', 1, '2', '2023-05-14 13:47:59', '2023-05-14 13:47:59');
 
 -- --------------------------------------------------------
 

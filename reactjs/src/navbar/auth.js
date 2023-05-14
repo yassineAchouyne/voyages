@@ -19,7 +19,6 @@ function Auth() {
         if (window.scrollY > 10) setScrol(true);
         else setScrol(false);
       });
-      console.log(scrol);
     }, []);
   
     return (
