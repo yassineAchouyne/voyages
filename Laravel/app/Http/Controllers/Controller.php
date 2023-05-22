@@ -24,6 +24,6 @@ class Controller extends BaseController
         $yesterday = now()->subDay()->format('Y-m-d');
         $DH =  Reserve::whereDate('date', $today)->count();
         $hier =  Reserve::whereDate('date', $yesterday)->count();
-        return response()->json(['jourDH' => $DH * 5,'hierDH'=>$hier*5]);
+        return response()->json(['jourDH' => $DH * 5, 'hierDH' => $hier * 5]);
     }
 }
