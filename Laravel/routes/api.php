@@ -37,6 +37,7 @@ Route::group(['middleware'=>'api'],function(){
     // admin
     Route::resource('buses',BusController::class);
     Route::resource('offres',OffreController::class);
+    Route::get('dash',[Controller::class,'dashboard']);
 });
 
 Route::post('resultat',[BusController::class,'resultat']);

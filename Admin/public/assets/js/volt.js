@@ -124,7 +124,7 @@ const d = document;
           new Chartist.Line('.ct-chart-sales-value', {
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             series: [
-                [0, 10, 30, 40, 80, 60, 100]
+                [0, 1, 3, 4, 8, 6, 10]
             ]
           }, {
             low: 0,

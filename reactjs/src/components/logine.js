@@ -11,7 +11,7 @@ export default function Logine() {
         // api call
         http.post('/login',{email:email,password:password}).then((res)=>{
             setToken(res.data.user,res.data.access_token);
-            alert(res.data.user.nom)
+            // alert(res.data.user.nom)
         })
     }
 

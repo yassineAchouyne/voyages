@@ -15,7 +15,7 @@ const handelClick = ()=>{
 
 
   if(!getToken()){
-    return <Login/>
+    return <Login state={state}/>
   }
   return(
     <div className={styles.paiment}>
