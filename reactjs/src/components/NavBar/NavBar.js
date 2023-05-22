@@ -2,7 +2,7 @@ import React ,{useState,useEffect}from "react";
 import styles from './NavBar.module.css'
 import { Link, useNavigate } from "react-router-dom";
 import AuthUser from "../AuthUser";
-export default function NavBar(props) {
+export default function NavBar(props) { 
   const{user,token} = AuthUser();
   const navigate = useNavigate()
   

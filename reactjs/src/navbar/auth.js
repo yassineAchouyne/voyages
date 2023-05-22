@@ -10,6 +10,7 @@ import Footer from "../components/Footer/Footer";
 import Resultat from "../components/Resultat_de_recherche/Resultat";
 import Confirmer from "../components/Confirmer_reservation/Confirmer";
 import Paiment from "../components/Paiment/Paiment";
+import Install from "../components/Install/Install";
 
 function Auth() {
     const [scrol, setScrol] = useState(false);
@@ -40,6 +41,7 @@ function Auth() {
           <Route path="/resultat" element={<Resultat/>} />
           <Route path="/confirm" element={<Confirmer/>} />
           <Route path="/paiment" element={<Paiment/>} />
+          <Route path="/installer" element={<Install/>} />
         </Routes>
     );
 }

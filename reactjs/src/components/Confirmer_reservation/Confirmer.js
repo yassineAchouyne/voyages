@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styles from "./Confiremer.module.css";
 import Footer from "../Footer/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,37 +8,44 @@ import AuthUser from "../AuthUser";
 
 export default function Confirmer() {
   const { state } = useLocation();
-  const {storage} = AuthUser()
-  const navigate = useNavigate()
-
+  const { storage } = AuthUser();
+  const navigate = useNavigate();
 
   const dateString = state.date;
   const date = moment(dateString).locale("fr");
   const formattedDate = date.format("dddd D MMMM YYYY");
 
-
-  let debut = new Date("0001-01-01 "+state.res.dateDebart);
-  let fin = new Date("0001-01-01 "+state.res.dateArrive);
-  let duree = (fin - debut )/ (1000 * 60);
-  const  formatTime = (minutes) =>{
+  let debut = new Date("0001-01-01 " + state.res.dateDebart);
+  let fin = new Date("0001-01-01 " + state.res.dateArrive);
+  let duree = (fin - debut) / (1000 * 60);
+  const formatTime = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     const formattedHours = hours < 10 ? `0${hours}` : hours;
-    const formattedMinutes = remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes;
+    const formattedMinutes =
+      remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes;
     return `${formattedHours}:${formattedMinutes}`;
-  }
-  
-  
+  };
 
- 
+  const handelClick = () => {
+    navigate("/paiment", {
+      state: {
+        date: dateString,
+        bus: state.res,
+        villeD: state.villeD.nom,
+        villeA: state.villeA.nom,
+      },
+    });
+  };
 
   return (
     <>
       <header className={styles.menu}>
         <nav>
-          <img src="./img/pngwing.com.png" onClick={()=>navigate("/")}/>
+          <img src="./img/pngwing.com.png" onClick={() => navigate("/")} />
           <h3>
-            Votre voyage de <span>{state.villeD.nom}</span> à <span>{state.villeA.nom}</span>
+            Votre voyage de <span>{state.villeD.nom}</span> à{" "}
+            <span>{state.villeA.nom}</span>
           </h3>
           <h3>{formattedDate}</h3>
         </nav>
@@ -77,7 +84,7 @@ export default function Confirmer() {
         </aside>
         <section>
           <article className={styles.article}>
-            <img className={styles.tmp} src={storage+state.res.image} />
+            <img className={styles.tmp} src={storage + state.res.image} />
             <div>
               <span className={styles.span}>{state.res.statut}</span>
               <h1>
@@ -123,9 +130,7 @@ export default function Confirmer() {
               J'accepte de recevoir des offres promotionnelles.
             </label>
             <div className={styles.button}>
-              <Link to={"/paiment"}>
-                <button>Confirmer</button>
-              </Link>
+              <button onClick={handelClick}>Confirmer</button>
             </div>
           </article>
         </section>

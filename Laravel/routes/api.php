@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\ReserveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('logout', [AuthController::class,'logout']);
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
+    Route::resource('reserves',ReserveController::class);
 
     // admin
     Route::resource('buses',BusController::class);

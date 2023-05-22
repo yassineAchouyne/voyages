@@ -1,12 +1,28 @@
 import React from "react";
 import styles from "./Paiment.module.css";
+import AuthUser from "../AuthUser";
+import Login from "../Login/Login";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function Paiment() {
-  return (
+  const { state } = useLocation();
+  const{getToken,user} = AuthUser();
+  const navigate = useNavigate()
+
+const handelClick = ()=>{
+  navigate("/installer",{ state: {bus:state.bus,date:state.date}})
+}
+
+
+
+  if(!getToken()){
+    return <Login/>
+  }
+  return(
     <div className={styles.paiment}>
       <article className={styles.art}>
         <div className={styles.header}>
           <h4>DÉTAIL DE PAIEMENT</h4>
-          <h5>lundi, janvier 09, 2023 21:15:25</h5>
+          {/* <h5>lundi, janvier 09, 2023 21:15:25</h5> */}
         </div>
         <div className={styles.img}>
           <img src="img/payment-cards.png" />
@@ -53,8 +69,8 @@ export default function Paiment() {
           </div>
           <div className="p-2">
             <span className="row m-0" ><span className="col-2">Identifiant</span>:5fcbacaf-e620-428e-aa51-0171612730e4</span>
-            <span className="row m-0" ><span className="col-2">Trajet</span>:Voyage de Safi vers Casablanca le 2023-01-09 à 10:00</span>
-            <span className="row m-0" ><span className="col-2">Montant</span>:95 MAD</span>
+            <span className="row m-0" ><span className="col-2">Trajet</span>:Voyage de {state.villeD} vers {state.villeA} le {state.date}  à {state.bus.dateDebart}</span>
+            <span className="row m-0" ><span className="col-2">Montant</span>:{state.bus.prix+5} MAD</span>
           </div>
         </article>
 
@@ -63,9 +79,9 @@ export default function Paiment() {
             <h4>DÉTAIL DU VOYAGE</h4>
           </div>
           <div className="p-2">
-            <span className="row m-0" ><span className="col-4">Compagnie de voyage	</span>: asfar yousafe</span>
-            <span className="row m-0" ><span className="col-4">Date de départ</span>:Voyage de Safi vers Casablanca le 2023-01-09 à 10:00</span>
-            <span className="row m-0" ><span className="col-4">Heure de départ</span>:95 MAD</span>
+            <span className="row m-0" ><span className="col-4">Compagnie de voyage	</span>: {state.bus.libelle}</span>
+            <span className="row m-0" ><span className="col-4">Date de départ</span>:Voyage de {state.villeD} vers {state.villeA} le {state.date} </span>
+            <span className="row m-0" ><span className="col-4">Heure de départ</span>:à {state.bus.dateDebart}</span>
           </div>
         </article>
 
@@ -74,11 +90,11 @@ export default function Paiment() {
             <h4>INFORMATIONS DU CLIENT</h4>
           </div>
           <div className="p-2">
-            <span className="row m-0" ><span className="col-4">E-mail</span>: yachouyne@gmail.com</span>
+            <span className="row m-0" ><span className="col-4">E-mail</span>: {user.email}</span>
           </div>
         </article>
         <div className="row p-3">
-            <button className={`btn btn-success col-5`}>Valider</button>
+            <button className={`btn btn-success col-5`} onClick={handelClick}>Valider</button>
             <div className="col-2"></div>
             <button className={`btn btn-danger col-5 `}>Annuler</button>
         </div>
