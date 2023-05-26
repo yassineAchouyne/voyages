@@ -6,7 +6,13 @@ export default function Cgu() {
     <section>
       <NavBar scrol={true} />
       <div class="container text-center" style={{ marginTop: "100px" }}>
-        <h3>Conditions Générales d'Utilisation</h3>
+        <h3>Conditions Générales de Vente</h3>
+        <p>
+          Cher client, veuillez-vous assurer de lire attentivement et de
+          comprendre ces conditions générales avant d’acheter votre billet. Ces
+          conditions générales constituent le contrat d’achat et la possession
+          du billet de voyage implique l’acceptation de ces conditions.
+        </p>
         <div class="">
           <div class="red-border">&nbsp;</div>
           <details>

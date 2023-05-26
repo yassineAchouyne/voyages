@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
-use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
 {
@@ -47,5 +48,20 @@ class Controller extends BaseController
             ->whereDate('reserves.created_at', '=',$today)
             ->get();
         return $results ;
+    }
+
+    public function contact (Request $request) {
+        $contact = [
+            'name' => $request->nom,
+            'email' => $request->email,
+            'msg' => $request->message,
+            "date" => date("Y-m-d h:i:sa"),
+        ];
+        // return $contact;
+        Mail::send('contact', $contact, function ($msg) use($request) {
+            $msg->to("yachouyne@gmail.com")
+                ->subject($request->sujet);
+        });
+        return response()->json();
     }
 }

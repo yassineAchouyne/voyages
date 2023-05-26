@@ -10,6 +10,8 @@ export default function Confirmer() {
   const { state } = useLocation();
   const { storage } = AuthUser();
   const navigate = useNavigate();
+  const [cgu, setCgu] = useState(false);
+  const [rop, setRop] = useState(false);
 
   const dateString = state.date;
   const date = moment(dateString).locale("fr");
@@ -28,14 +30,16 @@ export default function Confirmer() {
   };
 
   const handelClick = () => {
-    navigate("/paiment", {
-      state: {
-        date: dateString,
-        bus: state.res,
-        villeD: state.villeD.nom,
-        villeA: state.villeA.nom,
-      },
-    });
+    if (cgu && rop) {
+      navigate("/paiment", {
+        state: {
+          date: dateString,
+          bus: state.res,
+          villeD: state.villeD.nom,
+          villeA: state.villeA.nom,
+        },
+      });
+    }
   };
 
   return (
@@ -120,14 +124,27 @@ export default function Confirmer() {
               </div>
             </div>
             <label>
-              <input type={"checkbox"} />
+              <input
+                type={"checkbox"}
+                checked={cgu}
+                onChange={() => setCgu(!cgu)}
+              />
               J'ai lu et j'accepte{" "}
-              <a href=""> les conditions générales de vente</a>, notamment la
-              mention relative à la protection des données personnelles.
+              <a href="/Cgu"> les conditions générales de vente</a>
+              {!cgu && (
+                <span className="ms-3 text-danger"> * obligatoire </span>
+              )}
             </label>
             <label>
-              <input type={"checkbox"} />
+              <input
+                type={"checkbox"}
+                checked={rop}
+                onChange={() => setRop(!rop)}
+              />
               J'accepte de recevoir des offres promotionnelles.
+              {!rop && (
+                <span className="ms-3 text-danger"> * obligatoire </span>
+              )}
             </label>
             <div className={styles.button}>
               <button onClick={handelClick}>Confirmer</button>

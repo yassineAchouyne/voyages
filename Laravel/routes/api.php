@@ -33,6 +33,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
     Route::resource('reserves',ReserveController::class);
+    Route::post('contact',[Controller::class,'contact']);
 
     // admin
     Route::resource('buses',BusController::class);
@@ -43,5 +44,5 @@ Route::group(['middleware'=>'api'],function(){
 Route::post('resultat',[BusController::class,'resultat']);
 Route::get('ville',[Controller::class,'lesVilles']);
 
-Route::get('test',[Controller::class,'getReservation']);
+// Route::get('test',[Controller::class,'getReservation']);
 

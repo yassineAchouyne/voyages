@@ -12,3 +12,13 @@
   --purple: #e2d3f4;
   --blue2:#4A739A;
 }
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #013dc4;
+  margin: 0 auto;
+  margin-bottom: 20px; }
+ .icon span {
+    font-size: 20px;
+    color: #fff; }

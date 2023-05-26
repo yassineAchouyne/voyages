@@ -14,6 +14,7 @@ import Install from "../components/Install/Install";
 import About from "../components/AboutUS/About";
 import QuestionsC from "../components/QuestionsC/QuestionsC";
 import Cgu from "../components/Cgu/Cgu";
+import Contact from "../components/Contact/Contact";
 
 function Auth() {
     const [scrol, setScrol] = useState(false);
@@ -48,6 +49,7 @@ function Auth() {
           <Route path="/about" element={<About/>} />
           <Route path="/faq" element={<QuestionsC/>} />
           <Route path="/Cgu" element={<Cgu/>} />
+          <Route path="/contact" element={<Contact/>} />
 
         </Routes>
     );

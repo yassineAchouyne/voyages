@@ -1,5 +1,5 @@
 import React from "react";
-import "./About.css";
+import  "./About.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 export default function About() {

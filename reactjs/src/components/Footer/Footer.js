@@ -19,7 +19,7 @@ export default function Footer() {
               <h4>Aide</h4>
               <ul>
              <li><a href="/about">Qui Sommes-Nous?</a></li>
-                <li><a href="">Contactez-nous</a></li>
+                <li><a href="/contact">Contactez-nous</a></li>
                 <li><a href="/faq">Questions courantes</a></li>
                 {/* <li><a href="">Méthodes de payement</a></li> */}
                 {/* <li><a href="">Vidéo explicative</a></li> */}

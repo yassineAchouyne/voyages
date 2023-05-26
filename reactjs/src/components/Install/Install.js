@@ -30,7 +30,7 @@ export default function Install() {
       <div className={styles.body}>
         <div>
           <h1 className={styles.title}>opération réussie</h1>
-          <h3>Veuillez télécharger le billet avant de fermer la fenêtre</h3>
+          <h3 className={styles.h3}>Veuillez télécharger le billet avant de fermer la fenêtre</h3>
           <div className={styles.button}>
             <button onClick={handleDownload}>
               Télécharger <i class=" ms-3 bi bi-download"></i>
