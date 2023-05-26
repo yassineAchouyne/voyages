@@ -24,6 +24,20 @@ class Controller extends BaseController
         $yesterday = now()->subDay()->format('Y-m-d');
         $DH =  Reserve::whereDate('date', $today)->count();
         $hier =  Reserve::whereDate('date', $yesterday)->count();
-        return response()->json(['jourDH' => $DH * 5, 'hierDH' => $hier * 5]);
+
+        $countUser = DB::table('users')->where('isAdmin', 0)->count();
+
+        $reservation = Reserve::whereDate('created_at', $today)->count();
+        return response()->json([
+            'jourDH' => $DH * 5,
+            'hierDH' => $hier * 5,
+            'countUser' => $countUser,
+            'countReserve' => $reservation,
+            'reservation' => $this->getReservation(),
+        ]);
+    }
+
+    public function getReservation(){
+        
     }
 }
