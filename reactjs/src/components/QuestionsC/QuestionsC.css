@@ -1,0 +1,33 @@
+@layer setupPage;
+
+details {
+  /* border: 1px solid var(--blue2); */
+  padding: 0 1rem;
+  text-align: start;
+  
+}
+details + details {
+  border-top: none;
+}
+details[open] {
+    padding-bottom: 1em;
+}  
+summary {
+  padding: 1rem 2em 1rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+/* cascade layer: page setup. Doesn't impact the accordion */
+@layer setupPage {
+  
+:root {
+  font-size: 112.5%;
+  line-height: 1.5;
+}
+}
+slot:not([name]) {
+  display: revert;
+}

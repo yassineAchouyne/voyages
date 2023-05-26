@@ -12,6 +12,8 @@ import Confirmer from "../components/Confirmer_reservation/Confirmer";
 import Paiment from "../components/Paiment/Paiment";
 import Install from "../components/Install/Install";
 import About from "../components/AboutUS/About";
+import QuestionsC from "../components/QuestionsC/QuestionsC";
+import Cgu from "../components/Cgu/Cgu";
 
 function Auth() {
     const [scrol, setScrol] = useState(false);
@@ -44,6 +46,8 @@ function Auth() {
           <Route path="/paiment" element={<Paiment/>} />
           <Route path="/installer" element={<Install/>} />          
           <Route path="/about" element={<About/>} />
+          <Route path="/faq" element={<QuestionsC/>} />
+          <Route path="/Cgu" element={<Cgu/>} />
 
         </Routes>
     );

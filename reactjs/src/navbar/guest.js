@@ -11,6 +11,8 @@ import Confirmer from "../components/Confirmer_reservation/Confirmer";
 import Paiment from "../components/Paiment/Paiment";
 import Login from "../components/Login/Login";
 import About from "../components/AboutUS/About";
+import QuestionsC from "../components/QuestionsC/QuestionsC";
+import Cgu from "../components/Cgu/Cgu";
 
 function Guest() {
     const [scrol, setScrol] = useState(false);
@@ -43,6 +45,8 @@ function Guest() {
           <Route path="/paiment" element={<Paiment/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/about" element={<About/>} />
+          <Route path="/faq" element={<QuestionsC/>} />
+          <Route path="/Cgu" element={<Cgu/>} />
         </Routes>
     );
 }

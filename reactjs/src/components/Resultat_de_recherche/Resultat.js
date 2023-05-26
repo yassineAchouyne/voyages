@@ -10,7 +10,7 @@ export default function Resultat() {
 if(state.resultat.length==0){
   return (
     <>
-      <header className={styles.menu} style={{ backgroundColor: "#4A739A", }}>
+      <header className={styles.menu} style={{ backgroundColor: "#4A739A", color:"#000" }}>
         <nav>
           <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
           <h3 href="" className={styles.connecter} >
