@@ -11,6 +11,7 @@ import Resultat from "../components/Resultat_de_recherche/Resultat";
 import Confirmer from "../components/Confirmer_reservation/Confirmer";
 import Paiment from "../components/Paiment/Paiment";
 import Install from "../components/Install/Install";
+import About from "../components/AboutUS/About";
 
 function Auth() {
     const [scrol, setScrol] = useState(false);
@@ -41,7 +42,9 @@ function Auth() {
           <Route path="/resultat" element={<Resultat/>} />
           <Route path="/confirm" element={<Confirmer/>} />
           <Route path="/paiment" element={<Paiment/>} />
-          <Route path="/installer" element={<Install/>} />
+          <Route path="/installer" element={<Install/>} />          
+          <Route path="/about" element={<About/>} />
+
         </Routes>
     );
 }

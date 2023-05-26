@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -38,6 +39,13 @@ class Controller extends BaseController
     }
 
     public function getReservation(){
-        
+        $today = now()->toDateString();
+        $results = DB::table('reserves')
+            ->join('users', 'users.id', '=', 'reserves.id_user')
+            ->join('buses', 'buses.id', '=', 'reserves.id_bus')
+            ->select('users.nom','users.prenom','buses.*')
+            ->whereDate('reserves.created_at', '=',$today)
+            ->get();
+        return $results ;
     }
 }

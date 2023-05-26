@@ -3,17 +3,23 @@ import AuthUser from "./AuthUser";
 
 function Dashboard() {
   const { user, http } = AuthUser();
+  const [villes, setVilles] = useState([]);
   const [dashboard, setDashboard] = useState({
     jourDH: "",
     hierDH: "",
     countUser: "",
-    countReserve:""
+    countReserve: "",
+    reservation: [],
   });
-
+  console.log(dashboard);
   useEffect(() => {
     http.get("dash").then((res) => setDashboard(res.data));
+    http.get("ville").then((res) => setVilles(res.data));
   }, []);
-
+  const getVille = (id) => {
+    let ville = villes.find((u) => u.id === id)
+    if (ville) return ville.nom
+  };
   return (
     <div className="dashboard-container">
       <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
@@ -199,7 +205,9 @@ function Dashboard() {
                     </svg>
                   </div>
                   <div class="d-sm-none">
-                    <h2 class="fw-extrabold h5">Les reservations aujourd'hui</h2>
+                    <h2 class="fw-extrabold h5">
+                      Les reservations aujourd'hui
+                    </h2>
                     <h3 class="mb-1">{dashboard.countReserve}</h3>
                   </div>
                 </div>
@@ -222,7 +230,9 @@ function Dashboard() {
                 <div class="card-header">
                   <div class="row align-items-center">
                     <div class="col">
-                      <h2 class="fs-5 fw-bold mb-0">Les reservations aujourd'hui</h2>
+                      <h2 class="fs-5 fw-bold mb-0">
+                        Les reservations aujourd'hui
+                      </h2>
                     </div>
                     <div class="col text-end">
                       {/* <a href="#" class="btn btn-sm btn-primary">
@@ -250,31 +260,18 @@ function Dashboard() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th class="text-gray-900" scope="row">
-                          /demo/admin/index.html
-                        </th>
-                        <td class="fw-bolder text-gray-500">3,225</td>
-                        <td class="fw-bolder text-gray-500">$20</td>
-                        <td class="fw-bolder text-gray-500">
-                          <div class="d-flex">
-                            <svg
-                              class="icon icon-xs text-danger me-2"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            42,55%
-                          </div>
-                        </td>
-                      </tr>
-                      
+                      {dashboard.reservation.map((res) => (
+                        <tr>
+                          <td class="fw-bolder text-gray-500">
+                            {" "}
+                            {res.prenom + " " + res.nom}
+                          </td>
+
+                          <td class="fw-bolder text-gray-500">{res.libelle}</td>
+                          <td class="fw-bolder text-gray-500">{getVille(res.lieuDebart) +' '+res.dateDebart}</td>
+                          <td class="fw-bolder text-gray-500">{getVille(res.lieuArrive) +' '+res.dateArrive}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -282,7 +279,6 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

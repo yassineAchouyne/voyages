@@ -10,6 +10,7 @@ import Resultat from "../components/Resultat_de_recherche/Resultat";
 import Confirmer from "../components/Confirmer_reservation/Confirmer";
 import Paiment from "../components/Paiment/Paiment";
 import Login from "../components/Login/Login";
+import About from "../components/AboutUS/About";
 
 function Guest() {
     const [scrol, setScrol] = useState(false);
@@ -41,6 +42,7 @@ function Guest() {
           <Route path="/confirm" element={<Confirmer/>} />
           <Route path="/paiment" element={<Paiment/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/about" element={<About/>} />
         </Routes>
     );
 }

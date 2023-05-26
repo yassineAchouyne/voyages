@@ -24,22 +24,32 @@
     background-color: #1671D0;
     border-radius: 5px;
 }
-.lesArticle{
-    padding-top: 50px;
-    display: flex;
-    overflow: hidden;
-   
+
+
+.marquee_container {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
 }
-.lesArticle>article{
-   
-    margin: 5px;
-    padding: 1px;
-    width: 250px;
-    height: 150px;
-    border-radius: 10px;
+
+.marquee {
+  display: flex;
+  animation: marquee 60s linear infinite;
 }
-.lesArticle>article>img{
-    border: 1px solid #4A739A;
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee img {
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  margin-right: 20px; /* Add margin between images */
+  border: 1px solid #4A739A;
     border-radius: 10px;
-    /* width: 100%; */
 }

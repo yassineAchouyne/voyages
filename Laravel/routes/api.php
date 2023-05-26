@@ -42,3 +42,6 @@ Route::group(['middleware'=>'api'],function(){
 
 Route::post('resultat',[BusController::class,'resultat']);
 Route::get('ville',[Controller::class,'lesVilles']);
+
+Route::get('test',[Controller::class,'getReservation']);
+

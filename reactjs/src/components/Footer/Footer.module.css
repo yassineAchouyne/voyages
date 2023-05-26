@@ -73,6 +73,9 @@ ul{
     height: 50px;
     padding: 5px;
 }
+.footer_col .imgF img{
+	width: 100px;
+}
 
 /*responsive*/
 @media(max-width: 767px){

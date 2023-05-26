@@ -9,7 +9,7 @@ export default function Education() {
             <span></span>
         </div>
         <div className={styles.info}>
-            <p>autobus.ma vous permet de chercher, comparer et acheter votre billet d’autocar en espèces ou par carte bancaire, des différentes sociétés de transport.</p>
+            <p>rihlaty.ma vous permet de chercher, comparer et acheter votre billet d’autocar en espèces ou par carte bancaire, des différentes sociétés de transport.</p>
         </div>
         <div className={styles.partee}>
             <article>

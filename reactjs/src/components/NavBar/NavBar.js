@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthUser from "../AuthUser";
 export default function NavBar(props) { 
   const{user,token} = AuthUser();
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
   
   if(props.scrol)var st={backgroundColor:"#4A739A"}
   return (

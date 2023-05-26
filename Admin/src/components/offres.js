@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AuthUser from "./AuthUser";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Preloader from "./Preloader";
 
 export default function Offres() {
   const { http, storage } = AuthUser();
@@ -15,11 +16,15 @@ export default function Offres() {
   const [codePromo, setCodePromo] = useState();
   const [photo, setPhoto] = useState();
   const [id, setId] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
-    http.get("offres").then((res) => setOffres(res.data));
+    http.get("offres").then((res) => {
+      setOffres(res.data)
+      setIsLoading(false);
+    });
   }, []);
   const Ajouter = () => {
     const formData = new FormData();
@@ -54,7 +59,7 @@ export default function Offres() {
       setDel(false);
     });
   };
-
+  if (isLoading) return <Preloader />;
   return (
     <>
       <div class="card border-0 shadow">

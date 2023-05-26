@@ -10,10 +10,10 @@ export default function Resultat() {
 if(state.resultat.length==0){
   return (
     <>
-      <header className={styles.menu} style={{ backgroundColor: "#4A739A" }}>
+      <header className={styles.menu} style={{ backgroundColor: "#4A739A", }}>
         <nav>
           <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
-          <h3 href="" className={styles.connecter}>
+          <h3 href="" className={styles.connecter} >
             les voyage disponible
           </h3>
           <a>
@@ -50,7 +50,7 @@ if(state.resultat.length==0){
       <header className={styles.menu} style={{ backgroundColor: "#4A739A" }}>
         <nav>
           <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
-          <h3 href="" className={styles.connecter}>
+          <h3 href="" className={styles.connecter} style={{color:"#000"}}>
             les voyage disponible
           </h3>
           <a>

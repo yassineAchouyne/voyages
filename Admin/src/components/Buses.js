@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import AuthUser from "./AuthUser";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Preloader from "./Preloader";
 
 export default function Buses() {
-  const { http,storage } = AuthUser();
+  const { http, storage } = AuthUser();
   const [buses, setBuses] = useState([]);
   const [show, setShow] = useState(false);
   const [update, setUpdate] = useState(false);
   const [del, setDel] = useState(false);
   const [villes, setVilles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [libelle, setLibelle] = useState();
   const [lieuDebart, setLieuDebart] = useState();
@@ -22,12 +24,14 @@ export default function Buses() {
   const [photo, setPhoto] = useState();
   const [id, setId] = useState();
 
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    http.get("buses").then((res) => setBuses(res.data));
+    http.get("buses").then((res) => {
+      setBuses(res.data)
+      setIsLoading(false);
+    });
     http.get("ville").then((res) => setVilles(res.data));
   }, []);
   const Ajouter = () => {
@@ -41,22 +45,25 @@ export default function Buses() {
     formData.append("capacite", capacite);
     formData.append("prix", prix);
     formData.append("statut", statut);
-    http
-      .post(
-        "buses",
-        formData
-      )
-      .then((res) => {
-        setBuses(res.data);
-        setShow(false);
-      });
+    http.post("buses", formData).then((res) => {
+      setBuses(res.data);
+      setShow(false);
+    });
     // console.log(photo)
   };
 
   const Modifier = (id) => {
     http
       .put("buses/" + id, {
-        libelle,lieuDebart,lieuArrive,dateDebart,dateArrive,capacite,prix,statut,photo
+        libelle,
+        lieuDebart,
+        lieuArrive,
+        dateDebart,
+        dateArrive,
+        capacite,
+        prix,
+        statut,
+        photo,
       })
       .then((res) => {
         setBuses(res.data);
@@ -72,11 +79,11 @@ export default function Buses() {
   };
 
   const getVille = (id) => {
-    let ville = villes.find((u) => u.id === id)
-    if (ville) return ville.nom
-
-
+    let ville = villes.find((u) => u.id === id);
+    if (ville) return ville.nom;
   };
+
+  if (isLoading) return <Preloader />;
 
   return (
     <>
@@ -234,61 +241,61 @@ export default function Buses() {
               </thead>
               <tbody>
                 {buses.map((bus) => (
-                    <tr key={bus.id}>
-                      <td class="border-0">
-                        <a class="d-flex align-items-center">
-                          <img
-                            class="me-2"
-                            width={"50"}
-                            height={"30"}
-                            style={{borderRadius:"5px"}}
-                            alt="Image placeholder"
-                            src={storage+bus.image}
-                          />
-                          <div>
-                            <span class="h6">{bus.libelle}</span>
-                          </div>
-                        </a>
-                      </td>
-                      <td class="border-0 fw-bold">{bus.capacite}</td>
-                      <td class="border-0 fw-bold">
-                        {getVille(bus.lieuDebart) + " " + bus.dateDebart}
-                      </td>
-                      <td class="border-0 fw-bold">
-                        {getVille(bus.lieuArrive) + " " + bus.dateArrive}
-                      </td>
-                      <td class="border-0 fw-bold">{bus.statut}</td>
-                      <td class="border-0 fw-bold">{bus.prix} DH</td>
-                      <td class="border-0 fw-bold">
-                        <button
-                          className="btn text-primary fs-5"
-                          onClick={() => {
-                            setUpdate(true);
-                            setLibelle(bus.libelle);
-                            setLieuDebart(bus.lieuDebart);
-                            setLieuArrive(bus.lieuArrive);
-                            setDateDebart(bus.dateDebart);
-                            setDateArrive(bus.dateArrive);
-                            setCapacite(bus.capacite);
-                            setPrix(bus.prix);
-                            setStatut(bus.statut);
-                            setPhoto("");
-                            setId(bus.id);
-                          }}
-                        >
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button
-                          className="btn text-danger fs-5"
-                          onClick={() => {
-                            setDel(true);
-                            setId(bus.id);
-                          }}
-                        >
-                          <i class="bi bi-trash3-fill"></i>
-                        </button>
-                      </td>
-                    </tr>
+                  <tr key={bus.id}>
+                    <td class="border-0">
+                      <a class="d-flex align-items-center">
+                        <img
+                          class="me-2"
+                          width={"50"}
+                          height={"30"}
+                          style={{ borderRadius: "5px" }}
+                          alt="Image placeholder"
+                          src={storage + bus.image}
+                        />
+                        <div>
+                          <span class="h6">{bus.libelle}</span>
+                        </div>
+                      </a>
+                    </td>
+                    <td class="border-0 fw-bold">{bus.capacite}</td>
+                    <td class="border-0 fw-bold">
+                      {getVille(bus.lieuDebart) + " " + bus.dateDebart}
+                    </td>
+                    <td class="border-0 fw-bold">
+                      {getVille(bus.lieuArrive) + " " + bus.dateArrive}
+                    </td>
+                    <td class="border-0 fw-bold">{bus.statut}</td>
+                    <td class="border-0 fw-bold">{bus.prix} DH</td>
+                    <td class="border-0 fw-bold">
+                      <button
+                        className="btn text-primary fs-5"
+                        onClick={() => {
+                          setUpdate(true);
+                          setLibelle(bus.libelle);
+                          setLieuDebart(bus.lieuDebart);
+                          setLieuArrive(bus.lieuArrive);
+                          setDateDebart(bus.dateDebart);
+                          setDateArrive(bus.dateArrive);
+                          setCapacite(bus.capacite);
+                          setPrix(bus.prix);
+                          setStatut(bus.statut);
+                          setPhoto("");
+                          setId(bus.id);
+                        }}
+                      >
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button
+                        className="btn text-danger fs-5"
+                        onClick={() => {
+                          setDel(true);
+                          setId(bus.id);
+                        }}
+                      >
+                        <i class="bi bi-trash3-fill"></i>
+                      </button>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
