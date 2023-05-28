@@ -9,7 +9,7 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [sujet, setSujet] = useState("");
   const [message, setMessage] = useState("");
-  const [send, setSend] = useState(true);
+  const [send, setSend] = useState(false);
 
   const handelSubmit = (e) => {
     e.preventDefault();

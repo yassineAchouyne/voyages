@@ -47,7 +47,7 @@ function Dashboard() {
                   </div>
                 </a>
                 <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" href="/profile">
                     <svg
                       class="dropdown-icon text-gray-400 me-2"
                       fill="currentColor"
@@ -60,7 +60,7 @@ function Dashboard() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    My Profile
+                    Mon Profile
                   </a>
                   <a class="dropdown-item d-flex align-items-center" href="#">
                     <svg

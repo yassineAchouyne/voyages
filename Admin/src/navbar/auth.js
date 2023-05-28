@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthUser from "../components/AuthUser";
 import Buses from "../components/Buses";
 import Offres from "../components/offres";
+import Profile from "../components/Profile";
 function Auth() {
   const { token, logout } = AuthUser();
   const logoutUser = () => {
@@ -24,6 +25,7 @@ function Auth() {
           
             <Route path="/buses" element={<Buses />} />
             <Route path="/offres" element={<Offres />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </main>
       </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReserveController;
 
 /*
@@ -39,6 +40,8 @@ Route::group(['middleware'=>'api'],function(){
     Route::resource('buses',BusController::class);
     Route::resource('offres',OffreController::class);
     Route::get('dash',[Controller::class,'dashboard']);
+    Route::put('Uprofile',[ProfilController::class,'UpdateProfile']);
+
 });
 
 Route::post('resultat',[BusController::class,'resultat']);

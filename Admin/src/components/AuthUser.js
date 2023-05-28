@@ -28,7 +28,7 @@ export default function AuthUser(){
 
         setToken(token);
         setUser(user);
-        navigate('/');
+        // navigate('/');
     }
 
 
@@ -50,6 +50,7 @@ export default function AuthUser(){
         setToken:saveToken,
         token,
         user,
+        saveToken,
         getToken,
         http,
         logout,
