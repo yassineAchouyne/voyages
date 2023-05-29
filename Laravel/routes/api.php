@@ -41,6 +41,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::resource('offres',OffreController::class);
     Route::get('dash',[Controller::class,'dashboard']);
     Route::put('Uprofile',[ProfilController::class,'UpdateProfile']);
+    Route::put('Upassword',[ProfilController::class,'updatePassword']);
 
 });
 

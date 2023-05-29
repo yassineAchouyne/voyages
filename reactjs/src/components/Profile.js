@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthUser from "./AuthUser";
 
 export default function Profile() {
-  const { http, user, saveToken, token } = AuthUser();
+  const { http, user, setToken, token } = AuthUser();
   const [villes, setVilles] = useState([]);
   const [nom, setNom] = useState(user.nom);
   const [prenom, setPrenom] = useState(user.prenom);
@@ -12,7 +12,7 @@ export default function Profile() {
   const [current_password, setCurrent_password] = useState();
   const [new_password, setNew_password] = useState();
   const [message, setMessage] = useState({
-    color: '',
+    color: '', 
     msg: "",
     visible: false,
   });
@@ -31,7 +31,7 @@ export default function Profile() {
         ville: ville,
       })
       .then((res) => {
-        saveToken(res.data, token);
+        setToken(res.data, token);
         http.get("ville").then((res) => setVilles(res.data));
       });
   };
