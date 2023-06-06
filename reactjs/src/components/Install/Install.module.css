@@ -26,3 +26,42 @@
     border: 0;
     border-radius: 10px;
 }
+.comments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.comments article{
+    width: 50%;
+    padding: 5px;
+}
+.comments article img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.comments article div{
+    display: flex;
+}
+.comments article h5{
+    margin-left: 10px;
+    margin-top: 12px;
+}
+.comments i{
+    color: #ff9f43;
+    font-size: large;
+}
+.i{
+    color: #9e121b;
+    background-color: #9e121b;
+}
+.comments form{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.comments form h4{
+    text-align: center;
+    color: #9e121b;
+    width: 100%;
+}

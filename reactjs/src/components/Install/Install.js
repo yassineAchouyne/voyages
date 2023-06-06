@@ -11,9 +11,11 @@ export default function Install() {
     const [billet,setBillet]=useState('')
   useEffect(() => {
     http
-      .post("/reserves", { id_user: user.id, id_bus:state.bus.id,date:state.date })
+      .post("/reserves", { id_user: user.id, id_bus:state.bus.id,date:state.date ,nbrP:state.personne , plase:state.plase})
       .then((res) => setBillet(res.data));
   }, []);
+
+  console.log(state)
 
   const handleDownload = () => {
     const fileUrl = storage+billet; // URL du fichier à télécharger

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AuthUser(){
     const navigate = useNavigate();
+    const url = window.location.pathname;
 
     const getToken = () =>{
         const tokenString = sessionStorage.getItem('token');
@@ -28,7 +29,7 @@ export default function AuthUser(){
 
         setToken(token);
         setUser(user);
-        // navigate('/');
+        navigate(url);
     }
 
 

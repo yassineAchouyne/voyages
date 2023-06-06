@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle',1000);
             $table->integer('lieuDebart');
             $table->integer('lieuArrive');
             $table->time('dateDebart');

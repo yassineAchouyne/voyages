@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfilController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\ReserveController;
 
 
 Route::post('login', [AuthController::class,'login']);
+Route::post('loginA', [AuthController::class,'loginAdmin']);
 Route::post('register', [AuthController::class,'register']);
 
 Route::group(['middleware'=>'api'],function(){
@@ -35,6 +37,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('me', [AuthController::class,'me']);
     Route::resource('reserves',ReserveController::class);
     Route::post('contact',[Controller::class,'contact']);
+    Route::resource('comment',CommentController::class);
 
     // admin
     Route::resource('buses',BusController::class);
@@ -49,6 +52,7 @@ Route::post('resultat',[BusController::class,'resultat']);
 Route::get('ville',[Controller::class,'lesVilles']);
 Route::get('fornisseur',[Controller::class,'fornisseur']);
 Route::get('phusRecherch',[Controller::class,'phusRecherch']);
+Route::get('placeReserve/{id}',[Controller::class,'PlaceReserve']);
 
 // Route::get('test',[Controller::class,'getReservation']);
 

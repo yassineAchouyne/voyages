@@ -79,4 +79,20 @@ class Controller extends BaseController
         $results = Bus::select('lieuDebart','lieuArrive')->inRandomOrder()->limit(5)->get();
         return response()->json($results);
     }
+
+    public function PlaceReserve($id){
+        $tabPlace = array();
+        // $tabPersonne = array();
+        $today = now()->toDateString();
+        $rus = DB::table('reserves')->where("id_bus",$id)->whereDate('date', '=',$today)->get();
+
+        foreach($rus as $r){
+            for($i=0; $i<$r->nbrPersonne; $i++){
+                array_push($tabPlace,$r->siege+$i);
+            }
+        }
+        return response()->json(["tabPlace"=>$tabPlace]);
+    }
+
+
 }

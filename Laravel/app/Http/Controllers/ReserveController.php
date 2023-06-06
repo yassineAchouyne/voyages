@@ -44,6 +44,8 @@ class ReserveController extends Controller
         $reserve->id_user = $request->id_user;
         $reserve->id_bus  = $request->id_bus;
         $reserve->date = $request->date;
+        $reserve->nbrPersonne = $request->nbrP;
+        $reserve->siege = $request->plase;
 
         $bus=Bus::find($request->id_bus);
         $lieuDebart = DB::table('villes')->where('id',$bus->lieuDebart)->first();
@@ -56,8 +58,8 @@ class ReserveController extends Controller
             'heure' => $bus->dateDebart,
             'lieuDebart' => $lieuDebart->nom,
             'lieuArrive' => $lieuArrive->nom,
-            'siege' => 1,
-            'prix' => $bus->prix+5,
+            'siege' => $request->plase,
+            'prix' => $bus->prix * $request->nbrP,
         ];
 
         $pdf = Pdf::loadView('billet', $data);

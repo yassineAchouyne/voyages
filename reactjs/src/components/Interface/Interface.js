@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Interface.module.css";
+import { Localization } from "react-localization";
+import fr from "../locales/fr";
+import ar from "../locales/ar";
+
+const localization = new Localization({
+  fr: fr,
+  fr: ar,
+});
+
 import AuthUser from "../AuthUser";
+
 export default function Interface() {
+  const lang = localization.strings;
   const navigate = useNavigate();
   const today = new Date().toISOString().substr(0, 10);
   const { http } = AuthUser();
@@ -31,8 +42,8 @@ export default function Interface() {
   };
 
   const RandRecherch = (debart, arrive) => {
-    setLieuArrive(arrive)
-    setLieuDebart(debart)
+    setLieuArrive(arrive);
+    setLieuDebart(debart);
     // setLieuDebart(debart);
     // setLieuArrive(arrive);
     // recherch();
@@ -42,22 +53,25 @@ export default function Interface() {
     <section className={styles.interface}>
       <div>
         <h1 className={styles.title}>
-          Achetez vos tickets d'autocar au meilleur prix!
+          {/* Achetez vos tickets d'autocar au meilleur prix! */}
+          {lang.Gtitre}
         </h1>
         <form>
-          <select value={lieuDebart} onChange={(e) => setLieuDebart(e.target.value)}>
-            <option selected >
-              ------Vill du départ------
-            </option>
+          <select
+            value={lieuDebart}
+            onChange={(e) => setLieuDebart(e.target.value)}
+          >
+            <option selected>------Vill du départ------</option>
             {villes.map((ville) => (
               <option value={ville.id}>{ville.nom}</option>
             ))}
           </select>
 
-          <select value={lieuArrive} onChange={(e) => setLieuArrive(e.target.value)}>
-            <option selected >
-              ------Vill d'arriveé------
-            </option>
+          <select
+            value={lieuArrive}
+            onChange={(e) => setLieuArrive(e.target.value)}
+          >
+            <option selected>------Vill d'arriveé------</option>
             {villes.map((ville) => (
               <option value={ville.id}>{ville.nom}</option>
             ))}

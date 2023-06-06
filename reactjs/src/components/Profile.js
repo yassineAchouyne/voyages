@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AuthUser from "./AuthUser";
+import styles from "./Resultat_de_recherche/Resultat.module.css";
+import Footer from "./Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { http, user, setToken, token } = AuthUser();
+  const navigate = useNavigate();
   const [villes, setVilles] = useState([]);
   const [nom, setNom] = useState(user.nom);
   const [prenom, setPrenom] = useState(user.prenom);
@@ -48,10 +52,24 @@ export default function Profile() {
       }).catch(err=>setMessage({color:"danger",msg:"Mot de passe actuel incorrect",visible:true}));
   };
   return (
-    <div>
-      <div class="container rounded bg-white mt-5 mb-5">
+    <>
+    <header className={styles.menu} style={{ backgroundColor: "#4A739A", color:"#000" }}>
+    <nav>
+      <img src="./img/pngwing.com.png" onClick={() => navigate("/")} d />
+      <h3 href="" className={styles.connecter} >
+        Mon profile
+      </h3>
+      <a>
+        {/* <img className={styles.img} src="./img/icons8-filter-64.png" /> */}
+      </a>
+    </nav>
+  </header>
+  <br />
+  <br />
+    <div  >
+      <div class="container rounded mt-5 mb-5" style={{ backgroundColor: "#EFEFEF"}}>
         <div class="row">
-          <div class="col-md-5 border-right">
+          <div class="col-md-6 border-right">
             <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="text-right">Paramètres du profil</h4>
@@ -126,7 +144,7 @@ export default function Profile() {
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             
             <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center experience">
@@ -172,5 +190,7 @@ export default function Profile() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

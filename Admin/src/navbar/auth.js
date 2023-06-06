@@ -8,6 +8,7 @@ import AuthUser from "../components/AuthUser";
 import Buses from "../components/Buses";
 import Offres from "../components/offres";
 import Profile from "../components/Profile";
+import NotFond from "../components/NotFond";
 function Auth() {
   const { token, logout } = AuthUser();
   const logoutUser = () => {
@@ -26,6 +27,7 @@ function Auth() {
             <Route path="/buses" element={<Buses />} />
             <Route path="/offres" element={<Offres />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFond />} />
           </Routes>
         </main>
       </div>

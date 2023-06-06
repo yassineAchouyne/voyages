@@ -9,13 +9,14 @@ export default function Logine() {
 
     const submitForm = () =>{
         // api call
-        http.post('/login',{email:email,password:password}).then((res)=>{
+        http.post('/login',{email:email,password:password,isAdmin:1}).then((res)=>{
             setToken(res.data.user,res.data.access_token);
         }).catch(err=>setErr("Email ou mot de passe non correct"))
     }
 
     return(
-        <form  >
+      <div className="container" style={{display:"flex",justifyContent:"center", height:"100vh",alignItems:"center"}}>
+        <form style={{ backgroundColor: "#EFEFEF" , padding:"40px", borderRadius:"5px"}} >
           {
             err && <div class="alert alert-danger" role="alert">
            {err}
@@ -43,5 +44,6 @@ export default function Logine() {
             </label>
             <button type="button" onClick={submitForm} className="btn btn-primary w-100">Se connecter</button>
           </form>
+          </div>
     )
 }

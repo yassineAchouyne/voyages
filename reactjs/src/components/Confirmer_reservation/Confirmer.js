@@ -12,6 +12,7 @@ export default function Confirmer() {
   const navigate = useNavigate();
   const [cgu, setCgu] = useState(false);
   const [rop, setRop] = useState(false);
+  console.log(state);
 
   const dateString = state.date;
   const date = moment(dateString).locale("fr");
@@ -37,10 +38,13 @@ export default function Confirmer() {
           bus: state.res,
           villeD: state.villeD.nom,
           villeA: state.villeA.nom,
+          personne:state.personne,
+          plase : state.plase,
         },
       });
     }
   };
+
 
   return (
     <>
@@ -65,15 +69,15 @@ export default function Confirmer() {
             <h3>Détails du prix</h3>
             <div>
               <p>Prix unitaire </p>
-              <span>{state.res.prix}DH</span>
+              <span>{state.res.prix } DH</span>
             </div>
             <div>
-              <p>Frais de service </p>
-              <span>5DH</span>
+              <p>Nombre de personne </p>
+              <span>{state.personne}</span>
             </div>
             <div>
               <h4>Prix Total</h4>
-              <span className={styles.prix}>{state.res.prix + 5}DH</span>
+              <span className={styles.prix}>{state.res.prix * state.personne} DH</span>
             </div>
           </article>
           <article>
@@ -98,7 +102,7 @@ export default function Confirmer() {
                 <div className={styles.line}></div>
                 {state.res.dateArrive.substring(0, 5)}
               </h1>
-              <p>lundi 9 janvier 2023</p>
+              <p>{formattedDate}</p>
             </div>
           </article>
           <article>
