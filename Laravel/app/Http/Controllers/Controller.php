@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
+use App\Models\Bus;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -63,5 +64,19 @@ class Controller extends BaseController
                 ->subject($request->sujet);
         });
         return response()->json();
+    }
+
+    public function fornisseur(){
+        $results = DB::table('buses')
+    ->select('libelle', 'image')
+    ->distinct()
+    ->get();
+
+        return response()->json($results);
+    }
+
+    public function phusRecherch(){
+        $results = Bus::select('lieuDebart','lieuArrive')->inRandomOrder()->limit(5)->get();
+        return response()->json($results);
     }
 }

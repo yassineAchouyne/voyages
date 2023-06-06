@@ -52,7 +52,7 @@ padding: 10px;
     justify-content: space-around;
     align-items: center;
 }
-.plusRecherch >a{
+.plusRecherch >button{
     text-decoration: none;
     background-color: var(--blue2);
     color: var(--purple);
@@ -63,7 +63,7 @@ padding: 10px;
     transition: all 0.5s;
     border: 1px solid var(--purple);
 }
-.plusRecherch >a:hover{
+.plusRecherch >button:hover{
     background-color: white;
     color: var(--blue2);
     

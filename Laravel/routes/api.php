@@ -47,6 +47,8 @@ Route::group(['middleware'=>'api'],function(){
 
 Route::post('resultat',[BusController::class,'resultat']);
 Route::get('ville',[Controller::class,'lesVilles']);
+Route::get('fornisseur',[Controller::class,'fornisseur']);
+Route::get('phusRecherch',[Controller::class,'phusRecherch']);
 
 // Route::get('test',[Controller::class,'getReservation']);
 

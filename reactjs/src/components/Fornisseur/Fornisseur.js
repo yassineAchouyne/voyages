@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import styles from './Fornisseur.module.css'
+import AuthUser from '../AuthUser'
+import { useEffect } from 'react';
 const Fornisseur = () => {
+  const {http,storage}=AuthUser();
 
-    const[images , setImages] = useState([
-        "img/téléchargement.jpeg",
-        "img/logoAutoroute.jpg",
-        'img/images (2).jpeg',
-        'img/images (3).jpeg',
-        'img/images (4).jpeg',
-        'img/logo (1).jpg',
-        'img/logo.jpg',
-        'img/logoAutoroute.jpg',
-        'img/téléchargement.jpeg',
-    ])
+    const[images , setImages] = useState([])
+
+    useEffect(()=>
+    http.get('/fornisseur').then(res=>setImages(res.data))
+    )
+   
     return (
         <section>
         <div className={styles.titre}>
@@ -22,7 +20,7 @@ const Fornisseur = () => {
         <div className={styles.marquee_container}>
           <div className={styles.marquee}>
             {images.map((image, index) => (
-              <img key={index} src={image} alt={`Image ${index}`} />
+              <img key={index} src={storage + image.image}  alt={`Image ${index}`} />
             ))}
           </div>
         </div>

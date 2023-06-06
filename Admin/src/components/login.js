@@ -5,16 +5,22 @@ export default function Logine() {
     const {http,setToken} = AuthUser();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
+    const [err,setErr] = useState();
 
     const submitForm = () =>{
         // api call
         http.post('/login',{email:email,password:password}).then((res)=>{
             setToken(res.data.user,res.data.access_token);
-        })
+        }).catch(err=>setErr("Email ou mot de passe non correct"))
     }
 
     return(
         <form  >
+          {
+            err && <div class="alert alert-danger" role="alert">
+           {err}
+          </div>
+          }
             <label className="w-100">
               Email :
               <input
