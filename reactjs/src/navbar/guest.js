@@ -14,10 +14,17 @@ import About from "../components/AboutUS/About";
 import QuestionsC from "../components/QuestionsC/QuestionsC";
 import Cgu from "../components/Cgu/Cgu";
 import Contact from "../components/Contact/Contact";
+import { useTranslation } from "react-i18next";
 
 function Guest() {
     const [scrol, setScrol] = useState(false);
-
+    const [t, i18n] = useTranslation();
+    const element = document.getElementById("root");
+    if (i18n.language == "ar") {
+      element.setAttribute("dir", "rtl");
+    }else {
+      element.setAttribute("dir", "ltr");
+    }
     useEffect(() => {
       window.addEventListener("scroll", () => {
         if (window.scrollY > 10) setScrol(true);

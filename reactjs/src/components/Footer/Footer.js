@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './Footer.module.css'
+import { useTranslation } from 'react-i18next'
 export default function Footer() {
+  const [t] = useTranslation();
   return ( 
     <footer className={styles.footer}>
         <div className={styles.container}>
@@ -16,24 +18,24 @@ export default function Footer() {
               
             </div>
             <div className={styles.footer_col}>
-              <h4>Aide</h4>
+              <h4>{t('Aide')}</h4>
               <ul>
-             <li><a href="/about">Qui Sommes-Nous?</a></li>
-                <li><a href="/contact">Contactez-nous</a></li>
-                <li><a href="/faq">Questions courantes</a></li>
+             <li><a href="/about">{t('about')}</a></li>
+                <li><a href="/contact">{t('contact')}</a></li>
+                <li><a href="/faq">{t('Questions')}</a></li>
                 {/* <li><a href="">Méthodes de payement</a></li> */}
                 {/* <li><a href="">Vidéo explicative</a></li> */}
               </ul>
             </div>
             <div className={styles.footer_col}>
-           <h4>Conditions et consignes</h4>
+           <h4>{t('Cec')}</h4>
               <ul>
-             <li><a href="/Cgu">Conditions d'utilisation</a></li>
+             <li><a href="/Cgu">{t('Cgu')}</a></li>
                 {/* <li><a href="">Garntie de remboursemant</a></li> */}
               </ul>
             </div>
             <div className={styles.footer_col}>
-              <h4>Suivez-nous</h4>
+              <h4>{t('suivez')}</h4>
               <div className={styles.social_links}>
                 <a href="#"><img src='img/facebook.png'/></a>
                 <a href="#"><img src='img/twitter.png'/></a>

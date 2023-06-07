@@ -1,7 +1,9 @@
 import React, { useState,useEffect } from 'react'
 import styles from './Offre.module.css'
 import AuthUser from '../AuthUser';
+import { useTranslation } from 'react-i18next';
 export default function Offre() {
+  const [t] = useTranslation();
   const { http, storage } = AuthUser();
   const [offres, setOffres] = useState([]);
 
@@ -15,7 +17,7 @@ export default function Offre() {
   return (
     <section>
       <div className={styles.titre}>
-        <h1>Découvrez nos offres</h1>
+        <h1>{t('titreOffre')}</h1>
         <span></span>
       </div>
       <div className={styles.LesArticle}>
@@ -25,7 +27,7 @@ export default function Offre() {
             <p>
               {offre.description}
             </p>
-            <button onClick={()=>handleCopyClick(offre.codePromo)} >J'achète</button>
+            <button onClick={()=>handleCopyClick(offre.codePromo)} >{t('achète')}</button>
           </article>
         ))}
       </div>

@@ -1,7 +1,29 @@
 {
   "Gtitre": "Achetez vos tickets d'autocar au meilleur prix!",
   "Destinations": "Destinations les plus recherchées :",
-  "villeD":"ville du départ",
-  "villeA":"ville d'arrivée",
-  "rechercher":"RECHERCHER"
+  "villeD": "ville du départ",
+  "villeA": "ville d'arrivée",
+  "rechercher": "RECHERCHER",
+
+  "titreE": "Agence de voyage online",
+  "description": "rihlaty.ma vous permet de chercher, comparer et acheter votre billet d’autocar en espèces ou par carte bancaire, des différentes sociétés de transport.",
+  "Choisir": "Choisir",
+  "Reserver": "Réserver",
+  "Embarquer": "Embarquer",
+  "ChoisirDesc": "Trouver l’offre qui vous convient.  ",
+  "ReserverDesc": "Choisissez votre siège, et payer en ligne par votre carte bancaire ou en espèces.  ",
+  "EmbarquerDesc": "RDV à l’adresse du départ avec votre code du ticket !  ",
+
+  "titreOffre": "Découvrez nos offres",
+  "achète": "J'achète",
+
+  "fournisseur":"Nos fournisseur",
+
+  "Aide":"Aide",
+  "about":"Qui Sommes-Nous?",
+  "contact":"Contactez-Nous",
+  "Questions":"Questions Courantes",
+  "Cec":"Conditions Et Consignes",
+  "Cgu":"Conditions D'utilisation",
+  "suivez":"Suivez-Nous"
 }
