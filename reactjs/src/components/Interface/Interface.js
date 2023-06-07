@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Interface.module.css";
-import { Localization } from "react-localization";
-import fr from "../locales/fr";
-import ar from "../locales/ar";
+import { useTranslation } from 'react-i18next';
 
-const localization = new Localization({
-  fr: fr,
-  fr: ar,
-});
 
 import AuthUser from "../AuthUser";
 
 export default function Interface() {
-  const lang = localization.strings;
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const today = new Date().toISOString().substr(0, 10);
   const { http } = AuthUser();
@@ -54,14 +48,15 @@ export default function Interface() {
       <div>
         <h1 className={styles.title}>
           {/* Achetez vos tickets d'autocar au meilleur prix! */}
-          {lang.Gtitre}
+          {t("Gtitre")}
+      
         </h1>
         <form>
           <select
             value={lieuDebart}
             onChange={(e) => setLieuDebart(e.target.value)}
           >
-            <option selected>------Vill du départ------</option>
+            <option selected>------ {t('villeD')} ------</option>
             {villes.map((ville) => (
               <option value={ville.id}>{ville.nom}</option>
             ))}
@@ -71,7 +66,7 @@ export default function Interface() {
             value={lieuArrive}
             onChange={(e) => setLieuArrive(e.target.value)}
           >
-            <option selected>------Vill d'arriveé------</option>
+            <option selected>------ {t('villeA')} ------</option>
             {villes.map((ville) => (
               <option value={ville.id}>{ville.nom}</option>
             ))}
@@ -91,12 +86,12 @@ export default function Interface() {
             onClick={recherch}
             className={styles.recherch}
           >
-            RECHERCHER
+            {t('rechercher')}
           </button>
           {/* </Link> */}
         </form>
         <h3 className={styles.soustitre}>
-          Destinations les plus recherchées :
+          {t('Destinations')}
         </h3>
         <div className={styles.plusRecherch}>
           {plusRecherch.map((res, i) => (

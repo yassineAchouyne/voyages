@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import Interface from "../components/Interface/Interface";
 import Education from "../components/Education/Education";
@@ -16,45 +15,51 @@ import QuestionsC from "../components/QuestionsC/QuestionsC";
 import Cgu from "../components/Cgu/Cgu";
 import Contact from "../components/Contact/Contact";
 import Profile from "../components/Profile";
+import { useTranslation } from "react-i18next";
 
 function Auth() {
-    const [scrol, setScrol] = useState(false);
+  const [scrol, setScrol] = useState(false);
+  const [t, i18n] = useTranslation();
+  const element = document.getElementById("root");
+  if (i18n.language == "ar") {
+    element.setAttribute("dir", "rtl");
+  }else {
+    element.setAttribute("dir", "ltr");
+  }
 
-    useEffect(() => {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 10) setScrol(true);
-        else setScrol(false);
-      });
-    }, []);
-  
-    return (
-        
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <main>
-                <NavBar scrol={scrol} />
-                <Interface />
-                <Education />
-                <Offre />
-                <Fornisseur />
-                <Footer />
-              </main>
-            }
-          />
-          <Route path="/resultat" element={<Resultat/>} />
-          <Route path="/confirm" element={<Confirmer/>} />
-          <Route path="/paiment" element={<Paiment/>} />
-          <Route path="/installer" element={<Install/>} />          
-          <Route path="/about" element={<About/>} />
-          <Route path="/faq" element={<QuestionsC/>} />
-          <Route path="/Cgu" element={<Cgu/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/profile" element={<Profile/>} />
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) setScrol(true);
+      else setScrol(false);
+    });
+  }, []);
 
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <main>
+            <NavBar scrol={scrol} />
+            <Interface />
+            <Education />
+            <Offre />
+            <Fornisseur />
+            <Footer />
+          </main>
+        }
+      />
+      <Route path="/resultat" element={<Resultat />} />
+      <Route path="/confirm" element={<Confirmer />} />
+      <Route path="/paiment" element={<Paiment />} />
+      <Route path="/installer" element={<Install />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/faq" element={<QuestionsC />} />
+      <Route path="/Cgu" element={<Cgu />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+  );
 }
 
 export default Auth;
